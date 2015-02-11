@@ -36,8 +36,10 @@ public class CyclicBarrier {
 		mutex.V();
 		sync.P();
 		sync.V();
-		numOfThreads = parties;
-		sync = new CountingSemaphore(parties);
+		if(numOfThreads == 0){
+			numOfThreads = parties;
+			sync = new CountingSemaphore(parties);   // makes the BarrierCyclic
+		}
 		return arrivalIndex;
 	}
 
